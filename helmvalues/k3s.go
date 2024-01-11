@@ -222,6 +222,7 @@ type ServiceValues struct {
 	LoadBalancerIP           string   `json:"loadBalancerIP,omitempty"`
 	LoadBalancerSourceRanges []string `json:"loadBalancerSourceRanges,omitempty"`
 	LoadBalancerClass        string   `json:"loadBalancerClass,omitempty"`
+	LoadBalancerAnnotation   map[string]string `json:"loadBalancerAnnotations,omitempty"`
 }
 
 type IngressValues struct {
