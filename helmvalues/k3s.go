@@ -20,7 +20,6 @@ type ServiceMonitor struct {
 
 type K3sEmbeddedEtcdValues struct {
 	Enabled bool `json:"enabled,omitempty"`
-	Migrate bool `json:"migrate,omitempty"`
 }
 
 type K3SEtcdValues struct {
@@ -216,12 +215,12 @@ type PDBValues struct {
 }
 
 type ServiceValues struct {
-	Type                     string   `json:"type,omitempty"`
-	ExternalIPs              []string `json:"externalIPs,omitempty"`
-	ExternalTrafficPolicy    string   `json:"externalTrafficPolicy,omitempty"`
-	LoadBalancerIP           string   `json:"loadBalancerIP,omitempty"`
-	LoadBalancerSourceRanges []string `json:"loadBalancerSourceRanges,omitempty"`
-	LoadBalancerClass        string   `json:"loadBalancerClass,omitempty"`
+	Type                     string            `json:"type,omitempty"`
+	ExternalIPs              []string          `json:"externalIPs,omitempty"`
+	ExternalTrafficPolicy    string            `json:"externalTrafficPolicy,omitempty"`
+	LoadBalancerIP           string            `json:"loadBalancerIP,omitempty"`
+	LoadBalancerSourceRanges []string          `json:"loadBalancerSourceRanges,omitempty"`
+	LoadBalancerClass        string            `json:"loadBalancerClass,omitempty"`
 	LoadBalancerAnnotation   map[string]string `json:"loadBalancerAnnotations,omitempty"`
 }
 
