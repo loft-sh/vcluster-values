@@ -40,7 +40,6 @@ type K3SEtcdValues struct {
 type BaseHelm struct {
 	GlobalAnnotations    map[string]string        `json:"globalAnnotations,omitempty"`
 	Pro                  bool                     `json:"pro,omitempty"`
-	EnableHA             bool                     `json:"enableHA,omitempty"`
 	Headless             bool                     `json:"headless,omitempty"`
 	DefaultImageRegistry string                   `json:"defaultImageRegistry,omitempty"`
 	Plugin               map[string]interface{}   `json:"plugin,omitempty"`
