@@ -57,7 +57,6 @@ type BaseHelm struct {
 		Annotations map[string]string `json:"annotations,omitempty"`
 	} `json:"workloadServiceAccount,omitempty"`
 	Rbac                RBACValues               `json:"rbac,omitempty"`
-	Replicas            uint32                   `json:"replicas,omitempty"`
 	NodeSelector        map[string]interface{}   `json:"nodeSelector,omitempty"`
 	Affinity            map[string]interface{}   `json:"affinity,omitempty"`
 	PriorityClassName   string                   `json:"priorityClassName,omitempty"`
@@ -96,6 +95,7 @@ type SyncerValues struct {
 	Resources             map[string]interface{}   `json:"resources,omitempty"`
 	KubeConfigContextName string                   `json:"kubeConfigContextName,omitempty"`
 	ServiceAnnotations    map[string]string        `json:"serviceAnnotations,omitempty"`
+	Replicas              uint32                   `json:"replicas,omitempty"`
 }
 
 type SyncValues struct {
