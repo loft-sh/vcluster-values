@@ -2,11 +2,12 @@ package helmvalues
 
 type K8s struct {
 	BaseHelm
-	Syncer     K8sSyncerValues  `json:"syncer,omitempty"`
-	API        APIServerValues  `json:"api,omitempty"`
-	Controller ControllerValues `json:"controller,omitempty"`
-	Scheduler  SchedulerValues  `json:"scheduler,omitempty"`
-	Etcd       EtcdValues       `json:"etcd,omitempty"`
+	Syncer       K8sSyncerValues       `json:"syncer,omitempty"`
+	API          APIServerValues       `json:"api,omitempty"`
+	Controller   ControllerValues      `json:"controller,omitempty"`
+	Scheduler    SchedulerValues       `json:"scheduler,omitempty"`
+	Etcd         EtcdValues            `json:"etcd,omitempty"`
+	EmbeddedEtcd K3sEmbeddedEtcdValues `json:"embeddedEtcd,omitempty"`
 }
 
 type K8sSyncerValues struct {
@@ -43,6 +44,10 @@ type EtcdValues struct {
 	SecurityContext                  map[string]interface{} `json:"securityContext,omitempty"`
 	ServiceAnnotations               map[string]string      `json:"serviceAnnotations,omitempty"`
 	AutoDeletePersistentVolumeClaims bool                   `json:"autoDeletePersistentVolumeClaims,omitempty"`
+	Replicas                         uint32                 `json:"replicas,omitempty"`
+	Labels                           map[string]string      `json:"labels,omitempty"`
+	Annotations                      map[string]string      `json:"annotations,omitempty"`
+	Storage                          Storage                `json:"storage,omitempty"`
 }
 
 type ControlPlaneCommonValues struct {

@@ -22,6 +22,11 @@ type K3sEmbeddedEtcdValues struct {
 	Enabled bool `json:"enabled,omitempty"`
 }
 
+type Storage struct {
+	Persistence bool   `json:"persistence,omitempty"`
+	Size        string `json:"size,omitempty"`
+}
+
 type K3SEtcdValues struct {
 	Enabled bool `json:"enabled,omitempty"`
 	Migrate bool `json:"migrate,omitempty"`
@@ -29,10 +34,7 @@ type K3SEtcdValues struct {
 	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
-	Storage struct {
-		Persistence bool   `json:"persistence,omitempty"`
-		Size        string `json:"size,omitempty"`
-	} `json:"storage,omitempty"`
+	Storage            Storage                `json:"storage,omitempty"`
 	SecurityContext    map[string]interface{} `json:"securityContext,omitempty"`
 	ServiceAnnotations map[string]string      `json:"serviceAnnotations,omitempty"`
 }
@@ -94,10 +96,9 @@ type SyncerValues struct {
 	KubeConfigContextName string                   `json:"kubeConfigContextName,omitempty"`
 	ServiceAnnotations    map[string]string        `json:"serviceAnnotations,omitempty"`
 	Replicas              uint32                   `json:"replicas,omitempty"`
-	Storage               struct {
-		Persistence bool   `json:"persistence,omitempty"`
-		Size        string `json:"size,omitempty"`
-	} `json:"storage,omitempty"`
+	Storage               Storage                  `json:"storage,omitempty"`
+	Labels                map[string]string        `json:"labels,omitempty"`
+	Annotations           map[string]string        `json:"annotations,omitempty"`
 }
 
 type SyncValues struct {
