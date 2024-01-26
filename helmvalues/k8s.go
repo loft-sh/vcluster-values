@@ -18,7 +18,6 @@ type K8sSyncerValues struct {
 }
 
 type APIServerValues struct {
-	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
 	SecurityContext    map[string]interface{} `json:"securityContext,omitempty"`
@@ -26,14 +25,11 @@ type APIServerValues struct {
 }
 
 type ControllerValues struct {
-	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
-	SecurityContext map[string]interface{} `json:"securityContext,omitempty"`
 }
 
 type SchedulerValues struct {
-	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
 	Disabled bool `json:"disabled,omitempty"`
@@ -45,27 +41,19 @@ type EtcdValues struct {
 	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
-	Storage struct {
-		Persistence bool   `json:"persistence,omitempty"`
-		Size        string `json:"size,omitempty"`
-	} `json:"storage,omitempty"`
 	SecurityContext                  map[string]interface{} `json:"securityContext,omitempty"`
 	ServiceAnnotations               map[string]string      `json:"serviceAnnotations,omitempty"`
 	AutoDeletePersistentVolumeClaims bool                   `json:"autoDeletePersistentVolumeClaims,omitempty"`
 }
 
 type ControlPlaneCommonValues struct {
-	Image           string            `json:"image,omitempty"`
-	ImagePullPolicy string            `json:"imagePullPolicy,omitempty"`
-	Replicas        uint32            `json:"replicas,omitempty"`
-	Labels          map[string]string `json:"labels,omitempty"`
-	Annotations     map[string]string `json:"annotations,omitempty"`
+	Image           string `json:"image,omitempty"`
+	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
 }
 
 type SyncerExORCommonValues struct {
-	VolumeMounts []map[string]interface{} `json:"volumeMounts,omitempty"`
-	ExtraArgs    []string                 `json:"extraArgs,omitempty"`
-	Resources    map[string]interface{}   `json:"resources,omitempty"`
+	ExtraArgs []string               `json:"extraArgs,omitempty"`
+	Resources map[string]interface{} `json:"resources,omitempty"`
 }
 
 type CommonValues struct {

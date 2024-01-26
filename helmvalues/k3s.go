@@ -20,7 +20,6 @@ type ServiceMonitor struct {
 
 type K3sEmbeddedEtcdValues struct {
 	Enabled bool `json:"enabled,omitempty"`
-	Migrate bool `json:"migrate,omitempty"`
 }
 
 type K3SEtcdValues struct {
@@ -41,7 +40,6 @@ type K3SEtcdValues struct {
 type BaseHelm struct {
 	GlobalAnnotations    map[string]string        `json:"globalAnnotations,omitempty"`
 	Pro                  bool                     `json:"pro,omitempty"`
-	EnableHA             bool                     `json:"enableHA,omitempty"`
 	Headless             bool                     `json:"headless,omitempty"`
 	DefaultImageRegistry string                   `json:"defaultImageRegistry,omitempty"`
 	Plugin               map[string]interface{}   `json:"plugin,omitempty"`
@@ -49,7 +47,6 @@ type BaseHelm struct {
 	FallbackHostDNS      bool                     `json:"fallbackHostDns,omitempty"`
 	MapServices          MapServices              `json:"mapServices,omitempty"`
 	Proxy                ProxyValues              `json:"proxy,omitempty"`
-	Storage              StorageValues            `json:"storage,omitempty"`
 	Volumes              []map[string]interface{} `json:"volumes,omitempty"`
 	ServiceAccount       struct {
 		Create bool `json:"create,omitempty"`
@@ -58,7 +55,6 @@ type BaseHelm struct {
 		Annotations map[string]string `json:"annotations,omitempty"`
 	} `json:"workloadServiceAccount,omitempty"`
 	Rbac                RBACValues               `json:"rbac,omitempty"`
-	Replicas            uint32                   `json:"replicas,omitempty"`
 	NodeSelector        map[string]interface{}   `json:"nodeSelector,omitempty"`
 	Affinity            map[string]interface{}   `json:"affinity,omitempty"`
 	PriorityClassName   string                   `json:"priorityClassName,omitempty"`
@@ -97,6 +93,11 @@ type SyncerValues struct {
 	Resources             map[string]interface{}   `json:"resources,omitempty"`
 	KubeConfigContextName string                   `json:"kubeConfigContextName,omitempty"`
 	ServiceAnnotations    map[string]string        `json:"serviceAnnotations,omitempty"`
+	Replicas              uint32                   `json:"replicas,omitempty"`
+	Storage               struct {
+		Persistence bool   `json:"persistence,omitempty"`
+		Size        string `json:"size,omitempty"`
+	} `json:"storage,omitempty"`
 }
 
 type SyncValues struct {
@@ -192,11 +193,6 @@ type VClusterValues struct {
 	PriorityClassName string `json:"priorityClassName,omitempty"`
 }
 
-type StorageValues struct {
-	Persistence bool   `json:"persistence,omitempty"`
-	Size        string `json:"size,omitempty"`
-}
-
 // These should be remove from the chart first as they are deprecated there
 type RBACValues struct {
 	ClusterRole struct {
@@ -216,12 +212,12 @@ type PDBValues struct {
 }
 
 type ServiceValues struct {
-	Type                     string   `json:"type,omitempty"`
-	ExternalIPs              []string `json:"externalIPs,omitempty"`
-	ExternalTrafficPolicy    string   `json:"externalTrafficPolicy,omitempty"`
-	LoadBalancerIP           string   `json:"loadBalancerIP,omitempty"`
-	LoadBalancerSourceRanges []string `json:"loadBalancerSourceRanges,omitempty"`
-	LoadBalancerClass        string   `json:"loadBalancerClass,omitempty"`
+	Type                     string            `json:"type,omitempty"`
+	ExternalIPs              []string          `json:"externalIPs,omitempty"`
+	ExternalTrafficPolicy    string            `json:"externalTrafficPolicy,omitempty"`
+	LoadBalancerIP           string            `json:"loadBalancerIP,omitempty"`
+	LoadBalancerSourceRanges []string          `json:"loadBalancerSourceRanges,omitempty"`
+	LoadBalancerClass        string            `json:"loadBalancerClass,omitempty"`
 	LoadBalancerAnnotation   map[string]string `json:"loadBalancerAnnotations,omitempty"`
 }
 
