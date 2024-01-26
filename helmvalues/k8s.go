@@ -44,6 +44,10 @@ type EtcdValues struct {
 	SecurityContext                  map[string]interface{} `json:"securityContext,omitempty"`
 	ServiceAnnotations               map[string]string      `json:"serviceAnnotations,omitempty"`
 	AutoDeletePersistentVolumeClaims bool                   `json:"autoDeletePersistentVolumeClaims,omitempty"`
+	Replicas                         uint32                 `json:"replicas,omitempty"`
+	Labels                           map[string]string      `json:"labels,omitempty"`
+	Annotations                      map[string]string      `json:"annotations,omitempty"`
+	Storage                          Storage                `json:"storage,omitempty"`
 }
 
 type ControlPlaneCommonValues struct {
