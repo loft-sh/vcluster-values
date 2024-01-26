@@ -47,7 +47,6 @@ type BaseHelm struct {
 	FallbackHostDNS      bool                     `json:"fallbackHostDns,omitempty"`
 	MapServices          MapServices              `json:"mapServices,omitempty"`
 	Proxy                ProxyValues              `json:"proxy,omitempty"`
-	Storage              StorageValues            `json:"storage,omitempty"`
 	Volumes              []map[string]interface{} `json:"volumes,omitempty"`
 	ServiceAccount       struct {
 		Create bool `json:"create,omitempty"`
@@ -95,6 +94,10 @@ type SyncerValues struct {
 	KubeConfigContextName string                   `json:"kubeConfigContextName,omitempty"`
 	ServiceAnnotations    map[string]string        `json:"serviceAnnotations,omitempty"`
 	Replicas              uint32                   `json:"replicas,omitempty"`
+	Storage               struct {
+		Persistence bool   `json:"persistence,omitempty"`
+		Size        string `json:"size,omitempty"`
+	} `json:"storage,omitempty"`
 }
 
 type SyncValues struct {
@@ -188,11 +191,6 @@ type VClusterValues struct {
 
 	// this is only provided in context of k0s right now
 	PriorityClassName string `json:"priorityClassName,omitempty"`
-}
-
-type StorageValues struct {
-	Persistence bool   `json:"persistence,omitempty"`
-	Size        string `json:"size,omitempty"`
 }
 
 // These should be remove from the chart first as they are deprecated there

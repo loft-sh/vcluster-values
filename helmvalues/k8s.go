@@ -40,10 +40,6 @@ type EtcdValues struct {
 	CommonValues
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
-	Storage struct {
-		Persistence bool   `json:"persistence,omitempty"`
-		Size        string `json:"size,omitempty"`
-	} `json:"storage,omitempty"`
 	SecurityContext                  map[string]interface{} `json:"securityContext,omitempty"`
 	ServiceAnnotations               map[string]string      `json:"serviceAnnotations,omitempty"`
 	AutoDeletePersistentVolumeClaims bool                   `json:"autoDeletePersistentVolumeClaims,omitempty"`
