@@ -8,6 +8,7 @@ type K8s struct {
 	Scheduler    SchedulerValues       `json:"scheduler,omitempty"`
 	Etcd         EtcdValues            `json:"etcd,omitempty"`
 	EmbeddedEtcd K3sEmbeddedEtcdValues `json:"embeddedEtcd,omitempty"`
+	Migrate      bool                  `json:"migrate,omitempty"`
 }
 
 type K8sSyncerValues struct {
