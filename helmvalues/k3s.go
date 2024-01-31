@@ -20,6 +20,7 @@ type ServiceMonitor struct {
 
 type K3sEmbeddedEtcdValues struct {
 	Enabled bool `json:"enabled,omitempty"`
+	Migrate bool `json:"migrate,omitempty"`
 }
 
 type Storage struct {
