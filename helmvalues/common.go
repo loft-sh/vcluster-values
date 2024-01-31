@@ -9,8 +9,8 @@ type ServiceMonitor struct {
 }
 
 type EmbeddedEtcdValues struct {
-	Enabled     bool   `json:"enabled,omitempty"`
-	MigrateFrom string `json:"migrate,omitempty"`
+	Enabled         bool `json:"enabled,omitempty"`
+	MigrateFromEtcd bool `json:"migrateFromEtcd,omitempty"`
 }
 
 type Storage struct {
