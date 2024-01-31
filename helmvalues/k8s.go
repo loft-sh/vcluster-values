@@ -2,13 +2,12 @@ package helmvalues
 
 type K8s struct {
 	BaseHelm
-	Syncer       K8sSyncerValues       `json:"syncer,omitempty"`
-	API          APIServerValues       `json:"api,omitempty"`
-	Controller   ControllerValues      `json:"controller,omitempty"`
-	Scheduler    SchedulerValues       `json:"scheduler,omitempty"`
-	Etcd         EtcdValues            `json:"etcd,omitempty"`
-	EmbeddedEtcd K3sEmbeddedEtcdValues `json:"embeddedEtcd,omitempty"`
-	Migrate      bool                  `json:"migrate,omitempty"`
+	Syncer       K8sSyncerValues    `json:"syncer,omitempty"`
+	API          APIServerValues    `json:"api,omitempty"`
+	Controller   ControllerValues   `json:"controller,omitempty"`
+	Scheduler    SchedulerValues    `json:"scheduler,omitempty"`
+	Etcd         EtcdValues         `json:"etcd,omitempty"`
+	EmbeddedEtcd EmbeddedEtcdValues `json:"embeddedEtcd,omitempty"`
 }
 
 type K8sSyncerValues struct {
