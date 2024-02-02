@@ -26,7 +26,7 @@ func getDefaultK0SReleaseValues(chartOptions *ChartOptions, log logr.Logger) (st
 		image, ok = K0SVersionMap[serverVersionString]
 		if !ok {
 			if serverMinorInt > 29 {
-				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.28", "serverVersion", serverVersionString)
+				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.29", "serverVersion", serverVersionString)
 				image = K0SVersionMap["1.29"]
 			} else {
 				log.Info("officially unsupported host server version, will fallback to virtual cluster version v1.26", "serverVersion", serverVersionString)
