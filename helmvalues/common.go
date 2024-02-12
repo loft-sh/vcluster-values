@@ -369,14 +369,14 @@ type TelemetryValues struct {
 
 type NoopSyncerValues struct {
 	Enabled        bool `json:"enabled,omitempty"`
-	Synck8sService bool `json:"synck8SService,omitempty"`
+	Synck8sService bool `json:"synck8sService,omitempty"`
 	Secret         struct {
 		ServerCaCert        string `json:"serverCaCert,omitempty"`
 		ServerCaKey         string `json:"serverCaKey,omitempty"`
 		ClientCaCert        string `json:"clientCaCert,omitempty"`
 		RequestHeaderCaCert string `json:"requestHeaderCaCert,omitempty"`
 		KubeConfig          string `json:"kubeConfig,omitempty"`
-	}
+	} `json:"secret,omitempty"`
 }
 
 type AdmissionValues struct {
