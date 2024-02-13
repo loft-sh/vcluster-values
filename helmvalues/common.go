@@ -14,17 +14,23 @@ type EmbeddedEtcdValues struct {
 }
 
 type Storage struct {
-	Persistence bool   `json:"persistence,omitempty"`
-	Size        string `json:"size,omitempty"`
+	Persistence                      bool   `json:"persistence,omitempty"`
+	Size                             string `json:"size,omitempty"`
+	AutoDeletePersistentVolumeClaims bool   `json:"autoDeletePersistentVolumeClaims,omitempty"`
 }
 
 type BaseHelm struct {
+	Distro               string                   `json:"distro,omitempty"`
 	GlobalAnnotations    map[string]string        `json:"globalAnnotations,omitempty"`
 	Pro                  bool                     `json:"pro,omitempty"`
 	ProLicenseSecret     string                   `json:"proLicenseSecret,omitempty"`
 	Headless             bool                     `json:"headless,omitempty"`
 	DefaultImageRegistry string                   `json:"defaultImageRegistry,omitempty"`
 	Plugin               map[string]interface{}   `json:"plugin,omitempty"`
+	Syncer               SyncerValues             `json:"syncer,omitempty"`
+	Storage              Storage                  `json:"storage,omitempty"`
+	Etcd                 EtcdValues               `json:"etcd,omitempty"`
+	Api                  APIServerValues          `json:"api,omitempty"`
 	Sync                 SyncValues               `json:"sync,omitempty"`
 	FallbackHostDNS      bool                     `json:"fallbackHostDns,omitempty"`
 	MapServices          MapServices              `json:"mapServices,omitempty"`
@@ -62,23 +68,26 @@ type BaseHelm struct {
 	NoopSyncer         NoopSyncerValues `json:"noopSyncer,omitempty"`
 	Monitoring         MonitoringValues `json:"monitoring,omitempty"`
 	CentralAdmission   AdmissionValues  `json:"centralAdmission,omitempty"`
+	K3sToken           string           `json:"k3sToken,omitempty"`
+	Controller         ControllerValues `json:"controller,omitempty"`
+	Scheduler          SchedulerValues  `json:"scheduler,omitempty"`
 }
 
 type SyncerValues struct {
-	ControlPlaneCommonValues
-	ExtraArgs             []string                 `json:"extraArgs,omitempty"`
-	Env                   []map[string]interface{} `json:"env,omitempty"`
-	LivenessProbe         EnabledSwitch            `json:"livenessProbe,omitempty"`
-	ReadinessProbe        EnabledSwitch            `json:"readinessProbe,omitempty"`
-	VolumeMounts          []map[string]interface{} `json:"volumeMounts,omitempty"`
-	ExtraVolumeMounts     []map[string]interface{} `json:"extraVolumeMounts,omitempty"`
-	Resources             map[string]interface{}   `json:"resources,omitempty"`
-	KubeConfigContextName string                   `json:"kubeConfigContextName,omitempty"`
-	ServiceAnnotations    map[string]string        `json:"serviceAnnotations,omitempty"`
-	Replicas              uint32                   `json:"replicas,omitempty"`
-	Storage               Storage                  `json:"storage,omitempty"`
-	Labels                map[string]string        `json:"labels,omitempty"`
-	Annotations           map[string]string        `json:"annotations,omitempty"`
+	ControlPlaneCommonValues `json:",inline" yaml:",inline"`
+	ExtraArgs                []string                 `json:"extraArgs,omitempty"`
+	Env                      []map[string]interface{} `json:"env,omitempty"`
+	LivenessProbe            EnabledSwitch            `json:"livenessProbe,omitempty"`
+	ReadinessProbe           EnabledSwitch            `json:"readinessProbe,omitempty"`
+	VolumeMounts             []map[string]interface{} `json:"volumeMounts,omitempty"`
+	ExtraVolumeMounts        []map[string]interface{} `json:"extraVolumeMounts,omitempty"`
+	Resources                map[string]interface{}   `json:"resources,omitempty"`
+	KubeConfigContextName    string                   `json:"kubeConfigContextName,omitempty"`
+	ServiceAnnotations       map[string]string        `json:"serviceAnnotations,omitempty"`
+	Replicas                 uint32                   `json:"replicas,omitempty"`
+	Storage                  Storage                  `json:"storage,omitempty"`
+	Labels                   map[string]string        `json:"labels,omitempty"`
+	Annotations              map[string]string        `json:"annotations,omitempty"`
 }
 
 type SyncValues struct {
@@ -157,21 +166,6 @@ type ProxyValues struct {
 type MetricsProxyServerConfig struct {
 	Nodes EnabledSwitch `json:"nodes,omitempty"`
 	Pods  EnabledSwitch `json:"pods,omitempty"`
-}
-
-type VClusterValues struct {
-	Image             string                   `json:"image,omitempty"`
-	ImagePullPolicy   string                   `json:"imagePullPolicy,omitempty"`
-	Command           []string                 `json:"command,omitempty"`
-	BaseArgs          []string                 `json:"baseArgs,omitempty"`
-	ExtraArgs         []string                 `json:"extraArgs,omitempty"`
-	ExtraVolumeMounts []map[string]interface{} `json:"extraVolumeMounts,omitempty"`
-	VolumeMounts      []map[string]interface{} `json:"volumeMounts,omitempty"`
-	Env               []map[string]interface{} `json:"env,omitempty"`
-	Resources         map[string]interface{}   `json:"resources,omitempty"`
-
-	// this is only provided in context of k0s right now
-	PriorityClassName string `json:"priorityClassName,omitempty"`
 }
 
 // These should be remove from the chart first as they are deprecated there
@@ -402,4 +396,18 @@ type CommonValues struct {
 	Tolerations       []map[string]interface{} `json:"tolerations,omitempty"`
 	PodAnnotations    map[string]string        `json:"podAnnotations,omitempty"`
 	PodLabels         map[string]string        `json:"podLabels,omitempty"`
+}
+
+type EtcdValues struct {
+	// Disabled is allowed for k8s & eks
+	Disabled bool `json:"disabled,omitempty"`
+	CommonValues
+	SyncerExORCommonValues
+	ControlPlaneCommonValues
+	SecurityContext    map[string]interface{} `json:"securityContext,omitempty"`
+	ServiceAnnotations map[string]string      `json:"serviceAnnotations,omitempty"`
+	Replicas           uint32                 `json:"replicas,omitempty"`
+	Labels             map[string]string      `json:"labels,omitempty"`
+	Annotations        map[string]string      `json:"annotations,omitempty"`
+	Embedded           EmbeddedEtcdValues     `json:"embedded,omitempty"`
 }
