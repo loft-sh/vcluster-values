@@ -1,17 +1,17 @@
-package helmvalues
+package vclusterconfig
 
 import (
 	"errors"
 	"regexp"
 )
 
-var validationFunctions = []func(BaseHelm) error{
+var validationFunctions = []func(Config) error{
 	syncerImageFormat,
 	k3sToken,
 	controllerAndApi,
 }
 
-func Validate(b BaseHelm) []error {
+func Validate(b Config) []error {
 	errors := make([]error, 0)
 	for _, function := range validationFunctions {
 		err := function(b)
@@ -23,7 +23,7 @@ func Validate(b BaseHelm) []error {
 	return errors
 }
 
-func syncerImageFormat(b BaseHelm) error {
+func syncerImageFormat(b Config) error {
 	r := regexp.MustCompile("[a-zA-Z]+.*$")
 	if !r.Match([]byte(b.Syncer.Image)) {
 		return errors.New("the syncer image doesn't have the right format")
@@ -31,14 +31,14 @@ func syncerImageFormat(b BaseHelm) error {
 	return nil
 }
 
-func k3sToken(b BaseHelm) error {
+func k3sToken(b Config) error {
 	if b.Distro != "k3s" && b.K3sToken != "" {
 		return errors.New("k3sToken is only valid when the distro is k3s")
 	}
 	return nil
 }
 
-func controllerAndApi(b BaseHelm) error {
+func controllerAndApi(b Config) error {
 	if b.Distro == "eks" || b.Distro == "k8s" {
 		return nil
 	}

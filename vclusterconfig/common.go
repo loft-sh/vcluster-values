@@ -1,4 +1,4 @@
-package helmvalues
+package vclusterconfig
 
 type MonitoringValues struct {
 	ServiceMonitor ServiceMonitor `json:"serviceMonitor,omitempty"`
@@ -19,7 +19,7 @@ type Storage struct {
 	AutoDeletePersistentVolumeClaims bool   `json:"autoDeletePersistentVolumeClaims,omitempty"`
 }
 
-type BaseHelm struct {
+type Config struct {
 	Distro               string                   `json:"distro,omitempty"`
 	GlobalAnnotations    map[string]string        `json:"globalAnnotations,omitempty"`
 	Pro                  bool                     `json:"pro,omitempty"`

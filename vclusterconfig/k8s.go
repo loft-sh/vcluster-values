@@ -1,4 +1,4 @@
-package helmvalues
+package vclusterconfig
 
 type APIServerValues struct {
 	SyncerExORCommonValues
