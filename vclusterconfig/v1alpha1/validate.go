@@ -1,4 +1,4 @@
-package vclusterconfig
+package v1alpha1
 
 import (
 	"errors"
