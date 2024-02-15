@@ -1,9 +1,5 @@
 package helmvalues
 
-type K8s struct {
-	BaseHelm
-}
-
 type APIServerValues struct {
 	SyncerExORCommonValues
 	ControlPlaneCommonValues
