@@ -1,9 +1,5 @@
 package config
 
-import (
-	"regexp"
-)
-
 type Config struct {
 	ExportKubeConfig ExportKubeConfig   `yaml:"exportKubeConfig,omitempty" json:"exportKubeConfig,omitempty"`
 	Sync             Sync               `yaml:"sync,omitempty" json:"sync,omitempty"`
@@ -788,8 +784,8 @@ type Patch struct {
 	// Regex - is regular expresion used to identify the Name,
 	// and optionally Namespace, parts of the field value that
 	// will be replaced with the rewritten Name and/or Namespace
-	Regex       string         `json:"regex,omitempty" yaml:"regex,omitempty"`
-	ParsedRegex *regexp.Regexp `json:"-"               yaml:"-"`
+	Regex string `json:"regex,omitempty" yaml:"regex,omitempty"`
+	//ParsedRegex *regexp.Regexp `json:"-"               yaml:"-"`
 
 	// Conditions are conditions that must be true for
 	// the patch to get executed
