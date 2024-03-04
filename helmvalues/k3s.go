@@ -1,5 +1,7 @@
 package helmvalues
 
+import "github.com/loft-sh/vcluster-values/config"
+
 type K3s struct {
 	BaseHelm
 	AutoDeletePersistentVolumeClaims bool               `json:"autoDeletePersistentVolumeClaims,omitempty"`
@@ -8,6 +10,16 @@ type K3s struct {
 	Etcd                             K3SEtcdValues      `json:"etcd,omitempty"`
 	VCluster                         VClusterValues     `json:"vcluster,omitempty"`
 	Syncer                           SyncerValues       `json:"syncer,omitempty"`
+}
+
+func (v *K3s) Upgrade() *config.Values {
+	return &config.Values{
+		ExportKubeConfig: toExportKubeConfig(v.Syncer.ExtraArgs),
+	}
+}
+
+func (v *K3s) FromString(values string) error {
+	return nil
 }
 
 type K3SEtcdValues struct {

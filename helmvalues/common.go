@@ -106,19 +106,19 @@ type SyncValues struct {
 }
 
 type SyncConfigMaps struct {
-	Enabled bool `json:"enabled,omitempty"`
-	All     bool `json:"all,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	All     *bool `json:"all,omitempty"`
 }
 
 type SyncSecrets struct {
-	Enabled bool `json:"enabled,omitempty"`
-	All     bool `json:"all,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
+	All     *bool `json:"all,omitempty"`
 }
 
 type SyncPods struct {
-	Enabled             bool `json:"enabled,omitempty"`
-	EphemeralContainers bool `json:"ephemeralContainers,omitempty"`
-	Status              bool `json:"status,omitempty"`
+	Enabled             *bool `json:"enabled,omitempty"`
+	EphemeralContainers bool  `json:"ephemeralContainers,omitempty"`
+	Status              bool  `json:"status,omitempty"`
 }
 
 type SyncNodes struct {
@@ -137,7 +137,7 @@ type SyncGeneric struct {
 }
 
 type EnabledSwitch struct {
-	Enabled bool `json:"enabled,omitempty"`
+	Enabled *bool `json:"enabled,omitempty"`
 }
 
 type MapServices struct {

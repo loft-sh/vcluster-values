@@ -1,6 +1,6 @@
 package config
 
-type Config struct {
+type Values struct {
 	ExportKubeConfig ExportKubeConfig   `yaml:"exportKubeConfig,omitempty" json:"exportKubeConfig,omitempty"`
 	Sync             Sync               `yaml:"sync,omitempty" json:"sync,omitempty"`
 	Observability    Observability      `yaml:"observability,omitempty" json:"observability,omitempty"`
@@ -67,13 +67,12 @@ type SyncFromHost struct {
 }
 
 type EnableSwitch struct {
-	Enabled bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
+	Enabled *bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
 }
 
 type SyncAllResource struct {
-	EnableSwitch `yaml:",inline" json:",inline"`
-
-	All bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
+	Enabled *bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
+	All     *bool `yaml:"enabled,omitempty" json:"enabled,omitempty"`
 }
 
 type SyncPods struct {

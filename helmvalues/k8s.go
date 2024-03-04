@@ -1,5 +1,7 @@
 package helmvalues
 
+import "github.com/loft-sh/vcluster-values/config"
+
 type K8s struct {
 	BaseHelm
 	Syncer       K8sSyncerValues    `json:"syncer,omitempty"`
@@ -8,6 +10,16 @@ type K8s struct {
 	Scheduler    SchedulerValues    `json:"scheduler,omitempty"`
 	Etcd         EtcdValues         `json:"etcd,omitempty"`
 	EmbeddedEtcd EmbeddedEtcdValues `json:"embeddedEtcd,omitempty"`
+}
+
+func (v *K8s) Upgrade() *config.Values {
+	return &config.Values{
+		ExportKubeConfig: toExportKubeConfig(v.Syncer.ExtraArgs),
+	}
+}
+
+func (v *K8s) FromString(values string) error {
+	return nil
 }
 
 type K8sSyncerValues struct {
