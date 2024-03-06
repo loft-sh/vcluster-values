@@ -19,8 +19,7 @@
     "BackingStore": {
       "properties": {
         "embeddedEtcd": {
-          "$ref": "#/$defs/EmbeddedEtcd",
-          "description": "Some docs here."
+          "$ref": "#/$defs/EmbeddedEtcd"
         },
         "externalEtcd": {
           "$ref": "#/$defs/ExternalEtcd"
