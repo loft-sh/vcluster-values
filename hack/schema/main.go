@@ -32,6 +32,7 @@ func generateSchema(configInstance interface{}) (*jsonschema.Schema, error) {
 	r := new(jsonschema.Reflector)
 	r.RequiredFromJSONSchemaTags = true
 	r.BaseSchemaID = "https://vcluster.com/schemas"
+	r.ExpandedStruct = true
 
 	commentMap := map[string]string{}
 
