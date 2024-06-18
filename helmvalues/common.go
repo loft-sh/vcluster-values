@@ -14,8 +14,9 @@ type EmbeddedEtcdValues struct {
 }
 
 type Storage struct {
-	Persistence bool   `json:"persistence,omitempty"`
-	Size        string `json:"size,omitempty"`
+	Persistence    bool                     `json:"persistence,omitempty"`
+	Size           string                   `json:"size,omitempty"`
+	BinariesVolume []map[string]interface{} `json:"binariesVolume,omitempty"`
 }
 
 type BaseHelm struct {
